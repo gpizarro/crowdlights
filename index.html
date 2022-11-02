@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>CrowdLights</title>
+
+    <style>
+      body {
+        background-color:  #b4b464;
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>User in crowd</h1>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      socket.on('change_background_color', function(color) {
+        document.body.style.backgroundColor = color;
+        console.log('Color has changed to ' + color);
+      });
+    </script>
+  </body>
+
+</html>

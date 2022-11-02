@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>CrowdLights Admin</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Admin</h1>
+    <form action="" id="admin-form">
+      <input type="text" id="input">
+      <button id="button">Change Color</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+
+      var button = document.getElementById('button');
+      var adminForm = document.getElementById('admin-form');
+      
+      adminForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+          socket.emit('change_background_color', input.value);
+        }
+      });
+    </script>
+  </body>
+
+</html>

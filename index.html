@@ -4,7 +4,7 @@
 
     <style>
       body {
-        background-color:  #b4b464;
+        background-color:  #000000;
         font-family: sans-serif;
       }
     </style>
@@ -17,10 +17,20 @@
     <script>
       var socket = io();
 
+      function getCurrentColor() {
+        socket.emit('request_current_color', function(color) {
+          document.body.style.backgroundColor = color;
+        });
+      }
+      
       socket.on('change_background_color', function(color) {
         document.body.style.backgroundColor = color;
         console.log('Color has changed to ' + color);
       });
+    
+      (function() {
+        getCurrentColor();
+      })();
     </script>
   </body>
 

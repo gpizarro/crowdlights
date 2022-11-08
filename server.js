@@ -21,22 +21,51 @@ app.get('/admin', (req, res) => {
   res.sendFile(__dirname + '/admin.html');
 });
 
-io.on('connection', (socket) => {
-  console.log('user connected');
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  })
-
-  socket.on('change_background_color', (color) => {
-    io.emit('change_background_color', color);
-    console.log('change_background_color requested');
-    console.log(color);
-  })
+const CrowdLights = (() => {
   
-});
+  let currentColor = 'not set';
+  
+  const setCurrentColor = (color) => {
+    currentColor = color
+  }
+  
+  const getCurrentColor = () => {
+    return currentColor;
+  }
+  2
+  const init = () => {
+    io.on('connection', (socket) => {
+    console.log('user connected');
+    
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+    
+    socket.on('change_background_color', (color) => {
+      setCurrentColor(color);
+      io.emit('change_background_color', color);
+    });
+    
+    socket.on('request_current_color', () => {
+      io.emit('change_background_color', currentColor);
+    })
+    
+    socket.onAny((event, args) => {
+      console.log('*** EVENT DETECTED ******');
+      console.log(event, args);
+      console.log(' ');
+      console.log('Current color is ' + getCurrentColor());
+      console.log('***********');
+    });
+  });
+  }
+  
+return {
+  init: init
+}
+})();
 
-
+CrowdLights.init();
 
 httpsServer.listen(3000, () => {
   console.log(' https server listening on *:3000');

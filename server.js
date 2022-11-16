@@ -21,18 +21,12 @@ app.get('/admin', (req, res) => {
   res.sendFile(__dirname + '/admin.html');
 });
 
+const appState = {
+  currentColor: ''
+}
+
 const CrowdLights = (() => {
   
-  let currentColor = 'not set';
-  
-  const setCurrentColor = (color) => {
-    currentColor = color
-  }
-  
-  const getCurrentColor = () => {
-    return currentColor;
-  }
-  2
   const init = () => {
     io.on('connection', (socket) => {
     console.log('user connected');
@@ -42,23 +36,26 @@ const CrowdLights = (() => {
     });
     
     socket.on('change_background_color', (color) => {
-      setCurrentColor(color);
+      appState.currentColor = color;
       io.emit('change_background_color', color);
     });
     
     socket.on('request_current_color', () => {
-      io.emit('change_background_color', currentColor);
+      io.emit('send_current_color', appState.currentColor);
+      // io.emit('change_background_color', currentColor);
     })
     
     socket.onAny((event, args) => {
+      console.log(' ');
       console.log('*** EVENT DETECTED ******');
       console.log(event, args);
+      console.log('*******');
       console.log(' ');
-      console.log('Current color is ' + getCurrentColor());
-      console.log('***********');
     });
+
   });
   }
+
   
 return {
   init: init

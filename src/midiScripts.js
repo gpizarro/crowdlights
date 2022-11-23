@@ -1,5 +1,4 @@
 import {WebMidi} from 'webmidi';
-import * as JZZ from 'jzz';
 
 const webMidiStatus = document.getElementById('webMidiStatus');
 const webMidiSection = document.getElementById('webMidiSection');
@@ -7,8 +6,6 @@ const tableHead = document.createElement('thead');
 const tableBody = document.createElement('tbody');
 const tableElement = document.createElement('table');
 
-
-// Webmidi 
 WebMidi
   .enable()
   .then(onEnabled)
@@ -18,15 +15,15 @@ function onEnabled() {
   console.log('webMidi enabled');
   
   if (WebMidi.inputs.length < 1) {
-    webMidiStatus.innerHTML += "No Device Detected"
-
-  } else {
-    addInputTable();
+      webMidiStatus.innerHTML += "No Device Detected"
+    } else {
+      webMidiStatus.innerHTML += "Midi Devices found:"
+      addInputTable();
   }
 };
 
 function logInputs() {
-  console.log('logInputs called:ß');
+  console.log('logInputs called:');
   console.log('------------------')
   WebMidi.inputs.map((item)=> {
     console.log(item.id)

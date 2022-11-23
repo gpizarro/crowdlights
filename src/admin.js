@@ -1,11 +1,18 @@
-const socket = io();
+import {WebMidi} from 'webmidi';
+import * as JZZ from 'jzz';
 
+const socket = io();
 const button = document.getElementById('button');
 const adminForm = document.getElementById('admin-form');
 const redButton = document.getElementById('redButton');
 const togglesWhenPressed = document.getElementById('togglesWhenPressed');
 const touchButton = document.getElementById('touchButton');
 const touchButton2 = document.getElementById('touchButton2');
+const webMidiStatus = document.getElementById('webMidiStatus');
+const webMidiSection = document.getElementById('webMidiSection');
+const tableHead = document.createElement('thead');
+const tableBody = document.createElement('tbody');
+const tableElement = document.createElement('table');
 let lastColorState = '';
 
 function changeToColor(color = 'orange')  {
@@ -67,3 +74,60 @@ touchButton2.addEventListener('touchend', () => {
   touchButton2.classList.remove('touching');
   changeToColor(lastColorState);
 })
+
+// Webmidi 
+WebMidi
+  .enable()
+  .then(onEnabled)
+  .catch(err => console.log('error: ' + err));
+
+function onEnabled() {
+  console.log('webMidi enabled');
+  
+  if (WebMidi.inputs.length < 1) {
+    webMidiStatus.innerHTML += "No Device Detected"
+
+  } else {
+    addInputTable();
+  }
+};
+
+function logInputs() {
+  console.log('logInputs called:ß');
+  console.log('------------------')
+  WebMidi.inputs.map((item)=> {
+    console.log(item.id)
+  })
+}
+
+function addTableWithHeaders() {
+  let headerHTML = ''
+  tableElement.insertAdjacentElement('afterbegin', tableHead);
+  tableHead.classList.add('table-dark');
+  headerHTML += 
+  `<tr><th>#</th><th>Device</th></tr>`
+  tableHead.innerHTML = headerHTML;
+}
+
+
+function addTableData() {
+  let dataHTML = '';
+  WebMidi.inputs.forEach( (device, index) => {
+    dataHTML += 
+    `<tr>
+      <td>${index}</td>
+      <td>${device.name}</td>
+    </tr>`
+  });
+  tableBody.innerHTML = dataHTML;
+}
+
+function addInputTable() {
+  
+  tableElement.classList.add('table');
+  webMidiSection.insertAdjacentElement('beforeend', tableElement);
+  tableElement.insertAdjacentElement('beforeend', tableBody);
+  
+  addTableWithHeaders();
+  addTableData();
+}

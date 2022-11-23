@@ -2,12 +2,16 @@
   "name": "crowd-light-app",
   "version": "0.0.1",
   "description": "CrowdLights MVP",
+  "type": "module",
+  "mode": "development",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack --watch"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.5.3"
+    "jazz-midi": "^1.7.6",
+    "socket.io": "^4.5.3",
+    "webmidi": "^3.0.22"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

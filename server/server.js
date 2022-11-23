@@ -1,17 +1,22 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import https from 'https';
+import { Server } from "socket.io";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const privateKey = fs.readFileSync(path.resolve(__dirname, '../cert/key.pem'));
 const certificate = fs.readFileSync(path.resolve(__dirname, '../cert/cert.pem'));
 const app = express();
-const https = require('https');
 
 const httpsServer = https.createServer({
   cert: certificate,
   key: privateKey
 }, app);
 
-const { Server } = require("socket.io");
 const io = new Server(httpsServer);
 
 app.use('/dist', express.static('dist'));
@@ -33,45 +38,37 @@ const appState = {
   currentColor: ''
 }
 
-const CrowdLights = (() => {
-  
-  const init = () => {
-    io.on('connection', (socket) => {
-      console.log('user connected');
-      
-      socket.on('disconnect', () => {
-        console.log('user disconnected');
-      });
-      
-      socket.on('change_background_color', (color) => {
-        appState.currentColor = color;
-        io.emit('change_background_color', color);
-      });
-      
-      socket.on('request_current_color', () => {
-        io.emit('send_current_color', appState.currentColor);
-        // io.emit('change_background_color', currentColor);
-      })
-      
-      socket.onAny((event, args) => {
-        console.log(' ');
-        console.log('*** EVENT DETECTED ******');
-        console.log(event, args);
-        console.log('*******');
-        console.log(' ');
-      });
-      
-    });
-  }
-  
-  
-  return {
-    init: init
-  }
-})();
-
-CrowdLights.init();
-
 httpsServer.listen(3000, () => {
   console.log('https server listening on *:3000');
 });
+
+const Crowdlights = () => {
+  
+  io.on('connection', (socket) => {
+    console.log('user connected');
+    
+    socket.on('disconnect', () => {
+      console.log('user disconnected');
+    });
+    
+    socket.on('change_background_color', (color) => {
+      appState.currentColor = color;
+      io.emit('change_background_color', color);
+    });
+    
+    socket.on('request_current_color', () => {
+      io.emit('send_current_color', appState.currentColor);
+    })
+    
+    socket.onAny((event, args) => {
+      console.log(' ');
+      console.log('*** EVENT DETECTED ******');
+      console.log(event, args);
+      console.log('*******');
+      console.log(' ');
+    });
+    
+  });
+};
+
+Crowdlights();

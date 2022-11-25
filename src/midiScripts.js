@@ -19,13 +19,16 @@ function onEnabled() {
     } else {
       webMidiStatus.innerHTML += "Midi Devices found:"
       addInputTable();
+      listenToMidi();
   }
+  // logInputs();
 };
 
 function logInputs() {
   console.log('logInputs called:');
   console.log('------------------')
   WebMidi.inputs.map((item)=> {
+    console.log(item);
     console.log(item.id)
   })
 }
@@ -55,9 +58,32 @@ function addTableData() {
 function addInputTable() {
   
   tableElement.classList.add('table');
+  tableElement.classList.add('table-striped');
   webMidiSection.insertAdjacentElement('beforeend', tableElement);
   tableElement.insertAdjacentElement('beforeend', tableBody);
   
   addTableWithHeaders();
   addTableData();
+}
+
+
+function listenToMidi() {
+  console.log('listening...');
+  const nanoKontrol = WebMidi.getInputByName("nanoKONTROL2 SLIDER/KNOB");
+  const digitalPiano = WebMidi.getInputByName('Digital Piano')
+
+  if (nanoKontrol) { 
+    console.log('NanoKontrol found');
+  
+    nanoKontrol.addListener('midimessage', event => {
+      console.log(event);
+      console.log('*** Event from nanoKontrol***');
+      console.log('Type:' + event.type);
+      
+    });
+  }
+  
+  digitalPiano.addListener('noteon', event => {
+    console.log(event);
+  });
 }

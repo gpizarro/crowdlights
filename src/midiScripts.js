@@ -1,10 +1,14 @@
 import {WebMidi} from 'webmidi';
-
+import { changeToColor } from './emmiters.js';
 const webMidiStatus = document.getElementById('webMidiStatus');
 const webMidiSection = document.getElementById('webMidiSection');
 const tableHead = document.createElement('thead');
 const tableBody = document.createElement('tbody');
 const tableElement = document.createElement('table');
+
+function log(e) {
+  console.log(e);
+}
 
 WebMidi
   .enable()
@@ -13,7 +17,6 @@ WebMidi
 
 function onEnabled() {
   console.log('webMidi enabled');
-  
   if (WebMidi.inputs.length < 1) {
       webMidiStatus.innerHTML += "No Device Detected"
     } else {
@@ -31,8 +34,25 @@ function logInputs() {
     console.log(item);
     console.log(item.id)
   })
+  // console.log(WebMidi)
 }
 
+function logMidiMessageData(device, event) {
+  console.log('logging midiMessageData');
+  device.addListener('midimessage', event => {
+    log('**** Begin Message ******');
+    log('Device: ' + device.name);
+    log('Type: ' + event.type);
+    log('Type: ' + event.message.type);
+    log('Data: ' + event.data);
+    log('Channel: '+ event.message.channel);
+    // log(event.message);
+    // log('RawData:');
+    // log(event);
+    log('**** END Message ******');
+    log(' ');
+  })
+}
 function addTableWithHeaders() {
   let headerHTML = ''
   tableElement.insertAdjacentElement('afterbegin', tableHead);
@@ -61,6 +81,7 @@ function addInputTable() {
   tableElement.classList.add('table-striped');
   webMidiSection.insertAdjacentElement('beforeend', tableElement);
   tableElement.insertAdjacentElement('beforeend', tableBody);
+  webMidiSection.insertAdjacentElement('beforeend', document.createElement('hr'));
   
   addTableWithHeaders();
   addTableData();
@@ -70,20 +91,54 @@ function addInputTable() {
 function listenToMidi() {
   console.log('listening...');
   const nanoKontrol = WebMidi.getInputByName("nanoKONTROL2 SLIDER/KNOB");
-  const digitalPiano = WebMidi.getInputByName('Digital Piano')
+  const digitalPiano = WebMidi.getInputByName('Digital Piano');
+  const CrowdLights = WebMidi.getInputByName('IAC Driver CrowdLightsOut');
+
+  if (CrowdLights) {
+     CrowdLights.addListener('noteon', noteEvent => {
+      switch (noteEvent.note.identifier) {
+        case 'C1':
+          log('C1 heard from switch statement');
+          changeToColor('red');
+        break;
+
+        case 'C#1':
+          log('C#1 heard');
+          changeToColor('blue');
+        break;
+
+        case 'D1':
+          log('D1 heard');
+          changeToColor('cyan');
+        break;
+
+        case 'D#1':
+          log('D#1 heard');
+          changeToColor('yellow');
+        break;
+
+        default:
+          log('no more notes registered to log');
+      }
+      // log(noteEvent.note.identifier);
+     })
+
+  }
+  
 
   if (nanoKontrol) { 
     console.log('NanoKontrol found');
-  
     nanoKontrol.addListener('midimessage', event => {
       console.log(event);
       console.log('*** Event from nanoKontrol***');
       console.log('Type:' + event.type);
-      
+
     });
   }
   
-  digitalPiano.addListener('noteon', event => {
-    console.log(event);
-  });
+  if (digitalPiano) {
+    digitalPiano.addListener('noteon', event => {
+      console.log(event);
+    });
+  }
 }

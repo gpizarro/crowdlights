@@ -66,3 +66,5 @@ touchButton2.addEventListener('touchend', () => {
   touchButton2.classList.remove('touching');
   changeToColor(lastColorState);
 })
+
+export {changeToColor};

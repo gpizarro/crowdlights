@@ -1,8 +1,8 @@
 const socket = io();
 let lastColorState = '';
-const button = document.getElementById('button');
 const adminForm = document.getElementById('admin-form');
 const redButton = document.getElementById('redButton');
+const blueButton = document.getElementById('blueButton');
 const togglesWhenPressed = document.getElementById('togglesWhenPressed');
 const touchButton = document.getElementById('touchButton');
 const touchButton2 = document.getElementById('touchButton2');
@@ -11,41 +11,39 @@ function changeToColor(color = 'orange')  {
   socket.emit('change_background_color', color);
 }
 
-redButton.addEventListener('click', function(e) {
-  socket.emit('change_background_color', 'red');
-});
-
-blueButton.addEventListener('click', function(e) {
-  socket.emit('change_background_color', 'blue');
-});
-
 function getCurrentColor() {
-  console.log('getCurrentColor called');
   socket.emit('request_current_color');
 }
 
-socket.on('send_current_color', function(currentColor) {
+redButton.addEventListener('click', () => {
+  changeToColor('red');
+});
+
+blueButton.addEventListener('click', () => {
+  changeToColor('blue');
+});
+
+socket.on('send_current_color', (currentColor) => {
   lastColorState = currentColor;
-  console.log('Current Color is: ' + currentColor);
 });
 
-togglesWhenPressed.addEventListener('mousedown', function(e) {
+togglesWhenPressed.addEventListener('mousedown', () => {
   getCurrentColor();
-  socket.emit('change_background_color', 'orange')
+  changeToColor('orange');
 });
 
-togglesWhenPressed.addEventListener('mouseup', function() {
-  socket.emit('change_background_color', lastColorState);
-})
+togglesWhenPressed.addEventListener('mouseup', () => {
+  changeToColor(lastColorState);
+});
 
-adminForm.addEventListener('submit', function(e) {
+adminForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (input.value) {
-    socket.emit('change_background_color', input.value);
+    changeToColor(input.value);
   }
 });
 
-touchButton.addEventListener('touchstart', function(e) {
+touchButton.addEventListener('touchstart', () => {
   console.log('touched');
   getCurrentColor();
   changeToColor('cyan');

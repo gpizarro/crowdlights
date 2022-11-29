@@ -6,9 +6,7 @@ const tableHead = document.createElement('thead');
 const tableBody = document.createElement('tbody');
 const tableElement = document.createElement('table');
 
-function log(e) {
-  console.log(e);
-}
+
 
 WebMidi
   .enable()
@@ -126,15 +124,16 @@ function listenToMidi() {
   }
   
 
-  if (nanoKontrol) { 
-    console.log('NanoKontrol found');
-    nanoKontrol.addListener('midimessage', event => {
-      console.log(event);
-      console.log('*** Event from nanoKontrol***');
-      console.log('Type:' + event.type);
+  // if (nanoKontrol) { 
+  //   console.log('NanoKontrol found');
+  //   // nanoKontrolScripts();
+  //   // nanoKontrol.addListener('midimessage', event => {
+  //   //   console.log(event);
+  //   //   console.log('*** Event from nanoKontrol***');
+  //   //   console.log('Type:' + event.type);
 
-    });
-  }
+  //   });
+  // }
   
   if (digitalPiano) {
     digitalPiano.addListener('noteon', event => {

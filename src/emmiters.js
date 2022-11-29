@@ -15,6 +15,19 @@ function getCurrentColor() {
   socket.emit('request_current_color');
 }
 
+socket.on('send_current_color', (currentColor) => {
+  lastColorState = currentColor;
+});
+
+
+// Simple Color Changes
+adminForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (input.value) {
+    changeToColor(input.value);
+  }
+});
+
 redButton.addEventListener('click', () => {
   changeToColor('red');
 });
@@ -23,10 +36,11 @@ blueButton.addEventListener('click', () => {
   changeToColor('blue');
 });
 
-socket.on('send_current_color', (currentColor) => {
-  lastColorState = currentColor;
-});
 
+
+
+
+// Toggle Tests
 togglesWhenPressed.addEventListener('mousedown', () => {
   getCurrentColor();
   changeToColor('orange');
@@ -36,13 +50,8 @@ togglesWhenPressed.addEventListener('mouseup', () => {
   changeToColor(lastColorState);
 });
 
-adminForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  if (input.value) {
-    changeToColor(input.value);
-  }
-});
 
+// Touch Tests
 touchButton.addEventListener('touchstart', () => {
   console.log('touched');
   getCurrentColor();

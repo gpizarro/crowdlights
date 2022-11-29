@@ -35,7 +35,7 @@ app.use((req,res, next) => {
   }
 })
 const appState = {
-  currentColor: ''
+  currentColor: '',
 }
 
 httpsServer.listen(3000, () => {

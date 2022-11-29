@@ -25,6 +25,8 @@
       button { -webkit-user-select: none; }
 
       .touching { background-color: olive; }
+
+      .hidden {display: none;}
     </style>
   </head>
 
@@ -55,6 +57,25 @@
       <p id="webMidiStatus">Status: <br></p>
 
     </div>
+
+    <div id="nanoKontrolSection" class="hidden">
+      <h3>nanoKontrol</h3>
+      <p>Device detected.</p>
+      <p id="colorToSend">Color: 
+        <span id="R" style="color: #ff0000">R</span>
+        <span id="G" style="color: #00FF00">G</span>
+        <span id="B" style="color: #0000FF">B</span>
+      </p>
+      <ul id="nkFaderUl">
+        <li id="nkFader1">Fader 1: <span id="nkFaderValue1">value</span></li>
+        <li id="nkFader2">Fader 2: <span id="nkFaderValue2">value</span></li>
+        <li id="nkFader3">Fader 3: <span id="nkFaderValue3">value</span></li>
+        <li id="nkFader4">Fader 4: <span id="nkFaderValue4">value</span></li>
+      
+      </ul>
+      
+    </div>
+    
     <script src="/socket.io/socket.io.js"></script>
     <script src="dist/admin.js"></script>
     <script 

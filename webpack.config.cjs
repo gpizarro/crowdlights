@@ -4,7 +4,8 @@ module.exports = {
   mode: 'development',
     entry: {
       main:  './src/main.js',
-      admin: './src/admin.js'
+      admin: './src/admin.js',
+      dmx:   './src/dmx.js'
     },
     output: {
       filename: '[name].js',

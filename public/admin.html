@@ -27,17 +27,35 @@
       .touching { background-color: olive; }
 
       .hidden {display: none;}
+
+      .card {width: 18rem;}
     </style>
   </head>
 
   <body class="container">
     <h1 class="display-1">Admin</h1>
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Server Info</h3>
+
+        <div class="card-text">
+          <ul>
+            <li>Server: <span id="serverAddress"> n/a </span></li>
+            <li>Port: <span id="port"> n/a </span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
     <br>
     <h3>Simple Color Changes</h3>
     <form action="" id="admin-form">
       <input type="text" id="input">
       <button id="button">Change Color</button>
     </form>
+    <br>
     <button class="btn btn-info" id="redButton">Red</button>
     <button id="blueButton">Blue</button>
     <hr>

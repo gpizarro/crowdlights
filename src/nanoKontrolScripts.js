@@ -20,7 +20,6 @@ function setRgbState(color, state) {
   if (color == 'red') { rgbState.red = state; }
   if (color == 'green') { rgbState.green = state; }
   if (color == 'blue') { rgbState.blue = state; }
-  // else { log('Not an RGB color'); }
 }
 
 function mergeColors(colors) {

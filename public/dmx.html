@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DMX Admin</title>
+
+  <style>
+    .fader_wrap {
+      display: inline-block;
+      min-width: 4em;
+      padding-top: 1em;
+    }
+    
+    .fader_label,
+    .fader_console {
+      display: block;
+      text-align: center;
+    }
+
+    .fader_console { padding-bottom: .5em;}
+    input[type="range"].fader {
+      appearance: slider-vertical;
+      display: flex;
+      margin: 0 auto 1em;
+    }
+  
+    .fader_console_wrap {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="testElement">DMX not working</h1>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="dist/dmx.js"></script>
+
+</body>
+
+
+</html>

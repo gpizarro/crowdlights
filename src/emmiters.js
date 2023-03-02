@@ -74,4 +74,4 @@ touchButton2.addEventListener('touchend', () => {
   changeToColor(lastColorState);
 })
 
-export {changeToColor};
+export {changeToColor, socket};

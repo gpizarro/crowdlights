@@ -1,18 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang='en'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CrowdLights Admin</title>
     <!-- CSS only -->
     <link 
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
-      rel="stylesheet" 
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
-      crossorigin="anonymous">
-
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+    crossorigin="anonymous">
+    
+    <title>CrowdLights Admin</title>
     <style>
-      body { font-family: sans-serif; }
 
       .toggle-button {
         border: 1px solid black;
@@ -32,66 +31,81 @@
     </style>
   </head>
 
-  <body class="container">
-    <h1 class="display-1">Admin</h1>
-
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title">Server Info</h3>
-
-        <div class="card-text">
-          <ul>
-            <li>Server: <span id="serverAddress"> n/a </span></li>
-            <li>Port: <span id="port"> n/a </span></li>
-          </ul>
+  <body class="">
+    <div class="navbar navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand">Admin</a>
+        <div class="d-flex">
+            <div class="navbar-text">Server: 
+              <span id="serverAddress"></span>
+              <span>:</span>
+              <span id="port"></span>
+            </div>
         </div>
       </div>
     </div>
-
-
-    <br>
-    <h3>Simple Color Changes</h3>
-    <form action="" id="admin-form">
-      <input type="text" id="input">
-      <button id="button">Change Color</button>
-    </form>
-    <br>
-    <button class="btn btn-info" id="redButton">Red</button>
-    <button id="blueButton">Blue</button>
-    <hr>
-
-    <h3>Toggle Tests</h3>
-    <p>Touch not enabled.</p>
-    <button id="togglesWhenPressed">Changes while pressed</button>
-    <hr>
-
-    <h3>Touch Tests</h3>
-    <button id="touchButton" class="button">Button</button>
-    <div class="toggle-button" id="touchButton2">Button</div>
-    <hr>
-
-    <div id="webMidiSection">
-      <h3>Webmidi Tests</h3>
-      <p id="webMidiStatus">Status: <br></p>
-
-    </div>
-
-    <div id="nanoKontrolSection" class="hidden">
-      <h3>nanoKontrol</h3>
-      <p>Device detected.</p>
-      <p id="colorToSend">Color: 
-        <span id="R" style="color: #ff0000">R</span>
-        <span id="G" style="color: #00FF00">G</span>
-        <span id="B" style="color: #0000FF">B</span>
-      </p>
-      <ul id="nkFaderUl">
-        <li id="nkFader1">Fader 1: <span id="nkFaderValue1">value</span></li>
-        <li id="nkFader2">Fader 2: <span id="nkFaderValue2">value</span></li>
-        <li id="nkFader3">Fader 3: <span id="nkFaderValue3">value</span></li>
-        <li id="nkFader4">Fader 4: <span id="nkFaderValue4">value</span></li>
+    
+    
+    <div class="container-xxl py-2">
       
-      </ul>
-      
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div id="qrCodeElement"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <br>
+  
+  
+  
+      <br>
+      <h3>Simple Color Changes</h3>
+      <form action="" id="admin-form">
+        <input type="text" id="input">
+        <button id="button">Change Color</button>
+      </form>
+      <br>
+      <button class="btn btn-info" id="redButton">Red</button>
+      <button id="blueButton">Blue</button>
+      <hr>
+  
+      <h3>Toggle Tests</h3>
+      <p>Touch not enabled.</p>
+      <button id="togglesWhenPressed">Changes while pressed</button>
+      <hr>
+  
+      <h3>Touch Tests</h3>
+      <button id="touchButton" class="button">Button</button>
+      <div class="toggle-button" id="touchButton2">Button</div>
+      <hr>
+  
+      <div id="webMidiSection">
+        <h3>Webmidi Tests</h3>
+        <p id="webMidiStatus">Status: <br></p>
+  
+      </div>
+  
+      <div id="nanoKontrolSection" class="hidden">
+        <h3>nanoKontrol</h3>
+        <p>Device detected.</p>
+        <p id="colorToSend">Color: 
+          <span id="R" style="color: #ff0000">R</span>
+          <span id="G" style="color: #00FF00">G</span>
+          <span id="B" style="color: #0000FF">B</span>
+        </p>
+        <ul id="nkFaderUl">
+          <li id="nkFader1">Fader 1: <span id="nkFaderValue1">value</span></li>
+          <li id="nkFader2">Fader 2: <span id="nkFaderValue2">value</span></li>
+          <li id="nkFader3">Fader 3: <span id="nkFaderValue3">value</span></li>
+          <li id="nkFader4">Fader 4: <span id="nkFaderValue4">value</span></li>
+        
+        </ul>
+        
+      </div>
     </div>
     
     <script src="/socket.io/socket.io.js"></script>

@@ -10,6 +10,7 @@
   "dependencies": {
     "express": "^4.18.2",
     "jazz-midi": "^1.7.6",
+    "qrcodejs2": "^0.0.2",
     "socket.io": "^4.5.3",
     "webmidi": "^3.0.22"
   },

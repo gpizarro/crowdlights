@@ -1,6 +1,9 @@
 const socket = io();
 const infoCard = document.querySelector('#appInfo');
+const infoCardContainer = document.querySelector('#infoCardContainer');
+
 const body = document.getElementById('body');
+
 
 function setColor(color) {
   document.body.style.backgroundColor = color;
@@ -33,9 +36,18 @@ socket.on('change_background_color', function(color) {
   logColorState(color);
 });
 
+socket.on('showDebug', function() {
+  infoCardContainer.classList.remove('invisible'); 
+});
+
+socket.on('hideDebug', function() {
+  infoCardContainer.classList.add('invisible');
+});
+
 (function() {
   getCurrentColor();
 })();
+
 
 function logColorState(color) {
   infoCard.innerHTML = color;

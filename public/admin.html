@@ -63,32 +63,45 @@
           <div class="border bg-light p-3 rounded-3">
             <h3>Simple Color Changes</h3>
             <form action="" id="admin-form">
-              <input type="text" id="input">
-              <button id="button">Change Color</button>
-            </form>
-            <button class="btn btn-info" id="redButton">Red</button>
-            <button id="blueButton">Blue</button>
-          </div>
-        </div>
+                <div class="mb-3">
+                  <input type="text" id="input" class="form-control">
+                </div>
+                
+                <div class="mb-3">
+                  <button type="submit" id="button" class="btn btn-outline-primary">Change Color</button>
+                </div>
+              </form>
 
-        <div class="col">
-          <div class="border bg-light border p-3 rounded-3">
-            <h3>Toggle Color</h3>
-            <p>Touch not enabled.</p>
-            <button id="togglesWhenPressed">Changes while pressed</button>
+            </div>
           </div>
+          
+          <div class="col">
+            <div class="border bg-light border p-3 rounded-3">
+              <h3>Toggle Color</h3>
+              <p>Touch not enabled.</p>
+              <button id="togglesWhenPressed" class="btn btn-primary">Orange while pressed</button>
+              <button type="button" class="btn btn-primary" id="redButton">Red</button>
+              <button id="blueButton" class="btn btn-primary">Blue</button>
+            </div>
         </div>
     
         <div class="col">
           <div class="border bg-light border p-3 rounded-3">
             <h3>Touch Tests</h3>
-            <button id="touchButton" class="button">Button</button>
-            <div class="toggle-button" id="touchButton2">Button</div>
+            <button id="touchButton" class="btn btn-primary">Button</button>
+            <div class="toggle-button btn" id="touchButton2">Button</div>
           </div>
         </div> 
-
       </div>
       
+      <div class="row">
+        <div class="col">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Debug</label>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div id="webMidiSection">
           <h3>Webmidi Tests</h3>

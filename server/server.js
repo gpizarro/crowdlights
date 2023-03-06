@@ -85,13 +85,24 @@ const Crowdlights = () => {
     
     socket.on('request_current_color', () => {
       io.emit('send_current_color', appState.currentColor);
-    })
+    });
+
+    socket.on('toggleDebug', (state) => {
+      console.log('toggleDebug: ' + state);
+      if(state === true) {
+        io.emit('showDebug');
+      }
+
+      if (state === false) {
+        io.emit('hideDebug');
+      }
+    });
     
     socket.onAny((event, args) => {
       console.log(' ');
       console.log('*** EVENT DETECTED ******');
       console.log(event, args);
-      console.log('*******');
+      console.log('*************************');
       console.log(' ');
     });
     

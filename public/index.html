@@ -18,11 +18,20 @@
       .info-card {
         margin-top: 1em;
       }
+
+      .visible {
+        visibility: visible !important;
+      }
+
+      .invisible {
+        visibility: hidden !important;
+      }
+
     </style>
   </head>
 
   <body class="container" id="body">
-    <div class="card info-card">
+    <div class="card info-card invisible" id="infoCardContainer">
       <div class="card-body" id="appInfo">Hello</div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

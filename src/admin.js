@@ -4,6 +4,7 @@ import midiScripts from './midiScripts.js'
 import nanoKontrolScripts from './nanoKontrolScripts.js';
 import QRCode from 'qrcodejs2';
 
+const socket = io();
 const serverAddressElement = document.getElementById('serverAddress');
 const serverPortElement = document.getElementById('port');
 
@@ -37,4 +38,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(e);
   }
 });
+
+const debugButton = document.getElementById('flexSwitchCheckDefault');
+
+debugButton.addEventListener('change', (e)=> {
+  socket.emit('toggleDebug', e.target.checked);
+})
 

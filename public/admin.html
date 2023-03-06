@@ -28,6 +28,8 @@
       .hidden {display: none;}
 
       .card {width: 18rem;}
+      .qrcode {margin: 2rem auto 0;}
+      .row {margin-bottom: 4rem;}
     </style>
   </head>
 
@@ -45,12 +47,10 @@
       </div>
     </div>
     
-    
     <div class="container-xxl py-2">
-      
       <div class="row">
         <div class="col">
-          <div class="card">
+          <div class="card qrcode">
             <div class="card-body">
               <div id="qrCodeElement"></div>
             </div>
@@ -58,35 +58,42 @@
         </div>
       </div>
   
-      <br>
-  
-  
-  
-      <br>
-      <h3>Simple Color Changes</h3>
-      <form action="" id="admin-form">
-        <input type="text" id="input">
-        <button id="button">Change Color</button>
-      </form>
-      <br>
-      <button class="btn btn-info" id="redButton">Red</button>
-      <button id="blueButton">Blue</button>
-      <hr>
-  
-      <h3>Toggle Tests</h3>
-      <p>Touch not enabled.</p>
-      <button id="togglesWhenPressed">Changes while pressed</button>
-      <hr>
-  
-      <h3>Touch Tests</h3>
-      <button id="touchButton" class="button">Button</button>
-      <div class="toggle-button" id="touchButton2">Button</div>
-      <hr>
-  
-      <div id="webMidiSection">
-        <h3>Webmidi Tests</h3>
-        <p id="webMidiStatus">Status: <br></p>
-  
+      <div class="row gy-3">
+        <div class="col">
+          <div class="border bg-light p-3 rounded-3">
+            <h3>Simple Color Changes</h3>
+            <form action="" id="admin-form">
+              <input type="text" id="input">
+              <button id="button">Change Color</button>
+            </form>
+            <button class="btn btn-info" id="redButton">Red</button>
+            <button id="blueButton">Blue</button>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="border bg-light border p-3 rounded-3">
+            <h3>Toggle Color</h3>
+            <p>Touch not enabled.</p>
+            <button id="togglesWhenPressed">Changes while pressed</button>
+          </div>
+        </div>
+    
+        <div class="col">
+          <div class="border bg-light border p-3 rounded-3">
+            <h3>Touch Tests</h3>
+            <button id="touchButton" class="button">Button</button>
+            <div class="toggle-button" id="touchButton2">Button</div>
+          </div>
+        </div> 
+
+      </div>
+      
+      <div class="row">
+        <div id="webMidiSection">
+          <h3>Webmidi Tests</h3>
+          <p id="webMidiStatus">Status: <br></p>
+        </div>
       </div>
   
       <div id="nanoKontrolSection" class="hidden">

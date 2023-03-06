@@ -14,9 +14,16 @@ const certificate = fs.readFileSync(path.resolve(__dirname, '../cert/cert.pem'))
 const port = 3000;
 
 function getIpAddress () {
-  const networkInterfaces = os.networkInterfaces;
-  const nInterfaces = networkInterfaces();
-  return nInterfaces['en0'][2]['address'];
+  let ipAddress;
+  const networkInterfaces = os.networkInterfaces()['en0'];
+  
+  networkInterfaces.filter( item => {
+    let condition = item.address.indexOf('f') === 0;
+    if(condition === false) {
+      ipAddress = item.address;
+    }
+  })
+  return ipAddress;
 }
 
 const app = express();

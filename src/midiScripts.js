@@ -2,6 +2,7 @@ import {WebMidi} from 'webmidi';
 import { changeToColor } from './emmiters.js';
 const webMidiStatus = document.getElementById('webMidiStatus');
 const webMidiSection = document.getElementById('webMidiSection');
+const webMidiContainer = document.getElementById('webMidiContainer');
 const tableHead = document.createElement('thead');
 const tableBody = document.createElement('tbody');
 const tableElement = document.createElement('table');
@@ -16,7 +17,9 @@ WebMidi
 function onEnabled() {
   console.log('webMidi enabled');
   if (WebMidi.inputs.length < 1) {
-      webMidiStatus.innerHTML += "No Device Detected"
+      // webMidiStatus.innerHTML += "No Device Detected"
+      webMidiContainer.classList.add('hidden');
+
     } else {
       webMidiStatus.innerHTML += "Midi Devices found:"
       addInputTable();
@@ -51,6 +54,7 @@ function logMidiMessageData(device, event) {
     log(' ');
   })
 }
+
 function addTableWithHeaders() {
   let headerHTML = ''
   tableElement.insertAdjacentElement('afterbegin', tableHead);
@@ -59,7 +63,6 @@ function addTableWithHeaders() {
   `<tr><th>#</th><th>Device</th></tr>`
   tableHead.innerHTML = headerHTML;
 }
-
 
 function addTableData() {
   let dataHTML = '';

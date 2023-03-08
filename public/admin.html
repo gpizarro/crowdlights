@@ -25,7 +25,14 @@
 
       .touching { background-color: olive; }
 
-      .hidden {display: none;}
+      .visible {
+        visibility: visible !important;
+      }
+
+      .invisible {
+        visibility: hidden !important;
+      }
+
 
       .card {width: 18rem;}
       .qrcode {margin: 2rem auto 0;}
@@ -102,14 +109,14 @@
           </div>
         </div>
       </div>
-      <div class="row" id="webMidiContainer">
+      <div class="row invisible" id="webMidiContainer">
         <div id="webMidiSection">
           <h3>Webmidi Tests</h3>
           <p id="webMidiStatus">Status: <br></p>
         </div>
       </div>
   
-      <div id="nanoKontrolSection" class="hidden">
+      <div id="nanoKontrolSection" class="invisible">
         <h3>nanoKontrol</h3>
         <p>Device detected.</p>
         <p id="colorToSend">Color: 

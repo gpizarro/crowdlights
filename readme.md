@@ -1,11 +1,7 @@
 # CrowdLights
 ## Todo:
 
-- Add current color state when user logs in.
-- Add QR Code to log in.
-- Sync to a Midi instrument (Webmidi.js).
-- Acquire SSL certificate. 
-
+- SSL certificate issue on local. 
 
 ### Other:
 

@@ -18,10 +18,10 @@ function onEnabled() {
   console.log('webMidi enabled');
   if (WebMidi.inputs.length < 1) {
       // webMidiStatus.innerHTML += "No Device Detected"
-      webMidiContainer.classList.add('hidden');
-
     } else {
       webMidiStatus.innerHTML += "Midi Devices found:"
+      webMidiContainer.classList.remove('invisible');
+      webMidiContainer.classList.add('visible');
       addInputTable();
       listenToMidi();
   }

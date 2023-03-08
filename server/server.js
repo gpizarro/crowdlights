@@ -6,6 +6,7 @@ import { dirname } from 'path';
 import https from 'https';
 import { Server } from "socket.io";
 import os from 'os';
+import colors from 'colors';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -66,7 +67,8 @@ const appState = {
 }
 
 httpsServer.listen(port, () => {
-  console.log('https server listening on ' + getIpAddress() + ':' + port);
+  console.log('https server listening on ' + getIpAddress().green + ':' + colors.green(port));
+  console.log(' ');
 });
 
 const Crowdlights = () => {
@@ -111,6 +113,11 @@ const Crowdlights = () => {
 
 Crowdlights();
 
+console.log(' ');
+console.log('Crowdlights Server is live'.blue);
+console.log('--------------------------'.blue);
 
-
-
+process.env.NODE_ENV === 'development'?
+  console.log('Development Environment'.yellow):
+  console.log('Production Environment'.yellow);
+     

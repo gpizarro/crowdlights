@@ -43,7 +43,7 @@ class Fader {
   testIfLoaded() {
     console.log('Fader instantiated !');
     this.testElement = document.querySelector('#testElement');
-    testElement.innerText = 'DMX scripts loaded'
+    this.testElement.innerText = 'DMX scripts loaded'
   }
 
   listen() {

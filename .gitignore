@@ -2,3 +2,4 @@ node_modules/
 cert/
 dist/
 .DS_Store
+./node_modules/

@@ -18,7 +18,14 @@
     "webmidi": "^3.0.22"
   },
   "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-webpack-plugin": "^4.0.0",
     "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.0"
   }

@@ -26,7 +26,7 @@ function onEnabled() {
       listenToMidi();
   }
   // logInputs();
-};
+}
 
 function logInputs() {
   console.log('logInputs called:');
@@ -41,17 +41,17 @@ function logInputs() {
 function logMidiMessageData(device, event) {
   console.log('logging midiMessageData');
   device.addListener('midimessage', event => {
-    log('**** Begin Message ******');
-    log('Device: ' + device.name);
-    log('Type: ' + event.type);
-    log('Type: ' + event.message.type);
-    log('Data: ' + event.data);
-    log('Channel: '+ event.message.channel);
+    console.log('**** Begin Message ******');
+    console.log('Device: ' + device.name);
+    console.log('Type: ' + event.type);
+    console.log('Type: ' + event.message.type);
+    console.log('Data: ' + event.data);
+    console.log('Channel: '+ event.message.channel);
     // log(event.message);
     // log('RawData:');
     // log(event);
-    log('**** END Message ******');
-    log(' ');
+    console.log('**** END Message ******');
+    console.log(' ');
   })
 }
 
@@ -99,27 +99,27 @@ function listenToMidi() {
      CrowdLights.addListener('noteon', noteEvent => {
       switch (noteEvent.note.identifier) {
         case 'C1':
-          log('C1 heard from switch statement');
+          console.log('C1 heard from switch statement');
           changeToColor('red');
         break;
 
         case 'C#1':
-          log('C#1 heard');
+          console.log('C#1 heard');
           changeToColor('blue');
         break;
 
         case 'D1':
-          log('D1 heard');
+          console.log('D1 heard');
           changeToColor('cyan');
         break;
 
         case 'D#1':
-          log('D#1 heard');
+          console.log('D#1 heard');
           changeToColor('yellow');
         break;
 
         default:
-          log('no more notes registered to log');
+          console.log('no more notes registered to log');
       }
       // log(noteEvent.note.identifier);
      })

@@ -69,7 +69,7 @@ function nanoKontrolScripts() {
     // logger(nanoKontrol);
     addFaderData(nanoKontrol);
   }
-};
+}
 
 function assignColor(color, value) {
   const R = document.getElementById('R');

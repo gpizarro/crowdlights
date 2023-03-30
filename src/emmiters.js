@@ -23,8 +23,8 @@ socket.on('send_current_color', (currentColor) => {
 // Simple Color Changes
 adminForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  if (input.value) {
-    changeToColor(input.value);
+  if (input.value) { // eslint-disable-line
+    changeToColor(input.value); // eslint-disable-line 
   }
 });
 

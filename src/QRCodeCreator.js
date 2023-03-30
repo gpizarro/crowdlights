@@ -3,8 +3,7 @@ import QRCode from 'qrcodejs2';
 const qrCodeSection = document.querySelector('#qrCodeSection');
 
 class QRCodeCreator {
-  constructor(venueSections, server, port = '') {
-    // this.numberOfCodes = numberOfCodes;
+  constructor(venueSections = 0, server, port = '') {
     this.venueSections = venueSections;
     this.server = server;
     this.port = port;
@@ -14,7 +13,6 @@ class QRCodeCreator {
   }
   
   createCardCols() {
-    // const qrCodeCol = document.getElementById('qrCodeCol');
     qrCodeSection.innerHTML +=  
       `<div class='row gy-3' id='qrCodeCol' ></div>`;
     
@@ -30,8 +28,8 @@ class QRCodeCreator {
   createUrl(url) {
     let scheme = window.location.protocol;
     let data;
-    if (this.port) { data = scheme + '//' + this.server + ':' + this.port + '?' + url}
-    else { data = scheme + '//' + this.server + ':' + this.port + '?' + url; }
+    if (this.port) { data = scheme + '//' + this.server + ':' + this.port + '/?' + url}
+    else { data = scheme + '//' + this.server + ':' + this.port + '/?' + url; }
     return data;
   }
   

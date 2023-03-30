@@ -1,9 +1,7 @@
 const socket = io();
 const infoCard = document.querySelector('#appInfo');
 const infoCardContainer = document.querySelector('#infoCardContainer');
-
 const body = document.getElementById('body');
-
 
 function setColor(color) {
   document.body.style.backgroundColor = color;
